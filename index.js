@@ -17,6 +17,7 @@ const Database = {
             .then(r => r.json())
             .then(jr => callback(jr) );
     },
+<<<<<<< HEAD
     save:function(data, callback){
         console.log("save", JSON.stringify(data));
         const jdata = JSON.stringify(data);
@@ -36,6 +37,19 @@ const Database = {
                 callback(rj) 
             })
     },
+=======
+    save:function(data){
+        console.log("save", data)
+        fetch('./assets/db.json', {
+            method:"POST",
+            body:JSON.stringify({data}), 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                }
+            }).then(r => console.log("r", r.json()))
+    }
+>>>>>>> parent of 38752df... ...
 }
 
 
@@ -83,9 +97,6 @@ const vm = new Vue({
                 vm.animation.closeSidebar()
                 sidebar.setAttribute("data-display", "none");
             }
-        },
-        printer:function(d){
-            console.log("printer printed: ", d)
         }
 
     },
@@ -98,11 +109,16 @@ const vm = new Vue({
         // load local json db
         const thisApp = this;
         //Database.load(function(data){thisApp.database = data})
+<<<<<<< HEAD
         
         const data = {recs:[1,2,3]}
         //setTimeout(function(){
         //}, 2000)
         //Database.save(data, thisApp.printer)
+=======
+        const a = {recs:[]}
+        setTimeout(function(){Database.save(a)}, 2000)
+>>>>>>> parent of 38752df... ...
         //Database.save(a)
 
         // Resize ScreenListener
