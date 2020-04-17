@@ -19,7 +19,8 @@ const Database = {
     },
     save:function(data, callback){
         console.log("save", JSON.stringify(data));
-        fetch('./assets/db.json', {
+        const jdata = JSON.stringify(data);
+        fetch('assets/db.json', {
                 method:"post",
                 mode: 'cors', // no-cors, *cors, same-origin
                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -28,13 +29,12 @@ const Database = {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body:JSON.stringify(data), 
+                body:jdata, 
             }).then(r => r.json())
             .then(rj => {
                 console.log("rj", rj);
                 callback(rj) 
             })
-        
     },
 }
 
@@ -98,10 +98,12 @@ const vm = new Vue({
         // load local json db
         const thisApp = this;
         //Database.load(function(data){thisApp.database = data})
-        const a = {recs:[1,2,3]}
-        setTimeout(function(){Database.save(a, this.printer)}, 2000)
+        
+        const data = {recs:[1,2,3]}
+        //setTimeout(function(){
+        //}, 2000)
+        //Database.save(data, thisApp.printer)
         //Database.save(a)
-
 
         // Resize ScreenListener
         window.addEventListener("resize", this.screenListener);
