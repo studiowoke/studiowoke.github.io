@@ -17,17 +17,25 @@ const Database = {
             .then(r => r.json())
             .then(jr => callback(jr) );
     },
-    save:function(data){
-        console.log("save", data)
+    save:function(data, callback){
+        console.log("save", JSON.stringify(data));
         fetch('./assets/db.json', {
-            method:"POST",
-            body:JSON.stringify({data}), 
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-                }
-            }).then(r => console.log("r", r.json()))
-    }
+                method:"post",
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(data), 
+            }).then(r => r.json())
+            .then(rj => {
+                console.log("rj", rj);
+                callback(rj) 
+            })
+        
+    },
 }
 
 
@@ -75,6 +83,9 @@ const vm = new Vue({
                 vm.animation.closeSidebar()
                 sidebar.setAttribute("data-display", "none");
             }
+        },
+        printer:function(d){
+            console.log("printer printed: ", d)
         }
 
     },
@@ -87,8 +98,8 @@ const vm = new Vue({
         // load local json db
         const thisApp = this;
         //Database.load(function(data){thisApp.database = data})
-        const a = {recs:[]}
-        setTimeout(function(){Database.save(a)}, 2000)
+        const a = {recs:[1,2,3]}
+        setTimeout(function(){Database.save(a, this.printer)}, 2000)
         //Database.save(a)
 
 
