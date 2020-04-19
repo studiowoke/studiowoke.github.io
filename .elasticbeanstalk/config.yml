@@ -1,0 +1,18 @@
+branch-defaults:
+  master:
+    environment: studiowoke-env
+    group_suffix: null
+global:
+  application_name: studiowoke
+  branch: null
+  default_ec2_keyname: studiowoke
+  default_platform: Node.js 12 (BETA)
+  default_region: eu-west-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: studiowoke
+  repository: null
+  sc: null
+  workspace_type: Application
