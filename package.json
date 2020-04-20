@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build-start": "cd frontend && npm run build && cd .. && node ./server/www",
-    "server-start": "node ./server/www",
-    "start": "npm run build-start"
+    "build": "cd frontend && npm run build && cd ..",
+    "start": "node ./server/www",
+    "deploy": "npm run build && eb deploy"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

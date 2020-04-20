@@ -8,7 +8,7 @@ global:
   default_ec2_keyname: studiowoke
   default_platform: Node.js 12 (BETA)
   default_region: eu-west-2
-  include_git_submodules: true
+  include_git_submodules: false
   instance_profile: null
   platform_name: null
   platform_version: null
