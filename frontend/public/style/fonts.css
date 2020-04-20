@@ -1,0 +1,10 @@
+@font-face {
+  font-family: arial;
+  src: url(../assets/fonts/arial-normal.ttf);
+}
+
+@font-face {
+  font-family: arial;
+  src: url(../assets/fonts/arial-bold.TTF);
+  font-weight: bold;
+}

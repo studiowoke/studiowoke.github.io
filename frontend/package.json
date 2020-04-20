@@ -1,29 +1,27 @@
 {
-  "name": "express",
-  "version": "0.0.0",
+  "name": "StudioWoke",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --no-clean",
+    "build-wc": "vue-cli-service build --target wc --name cbs-navbar './custom-elements/*.js'"
   },
   "dependencies": {
-    "vue": "^2.6.11"
+    "core-js": "^3.6.4",
+    "vue": "^2.6.11",
+    "vue-custom-element": "^3.2.14"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "babel-loader": "^8.1.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.5.2",
-    "file-loader": "^6.0.0",
-    "html-webpack-plugin": "^4.2.0",
-    "html-webpack-template": "^6.2.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "style-loader": "^1.1.4",
-    "vue-loader": "^15.9.1",
-    "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
-  }
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "sass": "^1.26.3",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
