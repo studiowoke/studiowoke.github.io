@@ -11,23 +11,6 @@ var apiRouter = require('./server/routes/api');
 var app = express();
 
 
-console.log("APP ")
-console.log("----\n\n\n-------------|n\n")
-console.log("_dirname", __dirname);
-
-function readDirectory(path){
-    fs.readdir(path, function(err, data){
-      if (err) console.log("error")
-      else console.log(data)
-    })
-};
-
-readDirectory(path.join(__dirname, 'public'))
-
-console.log("----\n\n\n-------------|n\n")
-
-
-
 
 app.use(logger('dev'));
 app.use(express.json());
