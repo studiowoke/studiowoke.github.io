@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -8,22 +7,27 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 
-const isDevEnv = process.env.HOME =="/home/jb"
-console.log("is dev env: ", isDevEnv);
+const isCBsHome = process.env.HOME =="/home/jb"
+const haveDevFlag = process.env.npm_lifecycle_script.includes("development")
+const isDevEnv = (isCBsHome && haveDevFlag)
+
+console.log("is cb's home ?: ", isCBsHome);
+console.log("have dev flag: ", haveDevFlag);
+//console.log("NDE_ENV: ", process);
 
 
 module.exports = {
-    mode: isDevEnv ? "development" : 'production',
+    mode: isCBsHome ? "development" : 'production',
     entry: {
-        app: ['./frontend/src/index.js', hotMiddlewareScript],
-        print: ['./frontend/src/print.js', hotMiddlewareScript],
+        app: ['./src/index.js'],
+        //print: ['./frontend/src/print.js', hotMiddlewareScript],
       },
     output: {
-        publicPath: '/',
-        path: path.resolve(__dirname, './public'),
+        //publicPath: '/',
+        path: path.resolve(__dirname, '../public'),
         filename: '[name].js',
     },
-    optimization: {
+    optimization: isDevEnv ? undefined : {
         splitChunks: {
           minSize: 30000,
           automaticNameDelimiter: '~',
@@ -71,13 +75,14 @@ module.exports = {
         ],
     },
     plugins: [
+        new VueLoaderPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
+            template:"./index-clone.html"
         }),
-        new VueLoaderPlugin()
     ],
   };
   
